@@ -30,3 +30,10 @@ The trade-off: a fully conformant UAX #29 implementation ships the Unicode `Grap
 ## The awkward edge
 
 A ZWJ sequence is treated as a single cluster only when the joiner sits between two code points. A trailing ZWJ at the end of input is attached to the preceding cluster, which is what you want for streaming input but means `splitGraphemes('a\u200D')` returns `['a\u200D']` rather than `['a', '\u200D']`. If you need to detect a dangling joiner, check the last cluster's final code point yourself.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
