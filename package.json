@@ -1,6 +1,6 @@
 {
   "name": "ts-unicode-grapheme-splitter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JavaScript string splitter that keeps user-perceived characters intact.",
   "type": "module",
   "main": "src/index.js",
